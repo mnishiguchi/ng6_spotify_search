@@ -4,9 +4,9 @@ class SpotifyController {
 
   constructor( SpotifyService ) {
     "ngInject";
-    this.SpotifyService = SpotifyService
+    this._SpotifyService = SpotifyService
 
-    // Initial state.
+    this.name         = "ng spotify search"
     this.loading      = false
     this.searchResult = {}
     this.searchType   = "artist"
@@ -21,7 +21,7 @@ class SpotifyController {
 
     this.loading = true
 
-    this.SpotifyService.getSpotifyData( searchTerm, this.searchType )
+    this._SpotifyService.getSpotifyData( searchTerm, this.searchType )
     .then ( searchResult => {
       this.searchResult = searchResult
     })

@@ -52,6 +52,7 @@
     "yargs": "^3.9.0"
   },
   "scripts": {
+    "deploy": "gulp webpack && git add -f dist && git commit -m Build && git push origin :gh-pages ;  git subtree push --prefix dist origin gh-pages",
     "test": "karma start"
   },
   "keywords": [

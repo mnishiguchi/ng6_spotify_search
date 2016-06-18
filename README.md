@@ -1,5 +1,16 @@
 # NG6 Spotify Search
 
+## Basic Functionalities:
+
+ - Enter a keyword to search for.
+ - Select "artist" or "track" as the search type.
+ - Have the names of all search results print as a list.
+
+## TODO:
+
+ - Add a "Showing X-X of X results found" message.
+ - Setup pagination links for accessing the next page of results.
+
 # Getting Started
 ## Dependencies
 Tools needed to run this app:
@@ -27,3 +38,15 @@ NG6 uses Gulp to build and launch the development environment. After you have in
 	* runs `serve`.
 * `gulp component --name componentName`
   * scaffolds a new Angular component.
+
+### Deploy to [Surge](https://surge.sh/)
+
+```
+npm install --global surge
+```
+
+```
+gulp webpack
+cd dist
+surge
+```
