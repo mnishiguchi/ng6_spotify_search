@@ -1,0 +1,80 @@
+<navbar></navbar>
+
+<div class="spotify container">
+  <header>
+    <h1>ng spotify search</h1>
+
+    <form novalidate>
+      <input type="text"
+        ng-model="searchTerm"
+        ng-init="searchTerm=''"
+        ng-change="vm.getSpotifyData( searchTerm )"
+        ng-model-options="{
+          updateOn: 'default blur',
+          debounce: {
+            default: 700,
+            blur: 0
+          }
+        }"
+        placeholder="..."
+        class="form-control"
+      />
+
+      <!-- Clear search term button
+      * Displayed when search key exists.
+      * When clicked, callback will be excuted. -->
+      <a
+        ng-show="searchTerm.length > 6"
+        ng-click="searchTerm = ''"
+        class="clear-data" >
+        Clear search term
+      </a>
+
+      <!-- Search type dropdown
+      * ng-model is a local variable to store currently selected item.
+      * Use ng-init to set the initial value.
+      * When clicked, callback will be excuted. -->
+      <fieldset class="search-type pull-right" >
+        Search by:
+        <select
+          ng-model='selectedItem'
+          ng-init="selectedItem='artist'"
+          ng-change="vm.onSelected( selectedItem )"
+          ng-options="option for option in ['artist', 'track']" >
+        </select>
+      </fieldset>
+    </form>
+  </header>
+
+  <section>
+    <!-- Loading indicator
+    * Displayed only when waiting for the data to be loaded. -->
+    <p
+      ng-if="vm.loading"
+      class="loading">
+      <i class="fa fa-spinner fa-spin"></i>
+      Loading...
+    </p>
+
+    <!-- artist component
+    * Pass into the searchResult attribute a vm.searchResult object to be displayed. -->
+
+    <!-- <artist searchResult="vm.searchResult"></artist> -->
+
+    <hr>
+
+    <!-- Display JSON data -->
+    <div class="alert alert-warning">
+      <h4>artist data
+        <small>
+          <a
+            ng-click="searchTerm = '' ; vm.clearData()" >
+            Clear data
+          </a>
+        </small>
+      </h4>
+
+      <pre>{{ vm.searchResult | json }}</pre>
+    </div>
+  </section>
+</div>
