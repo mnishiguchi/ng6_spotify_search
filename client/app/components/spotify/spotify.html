@@ -39,14 +39,22 @@
     <a
       ng-show="searchTerm.length > 6"
       ng-click="searchTerm = ''"
-      class="clear-data" >
+      class="clear-data btn btn-default" >
       Clear search term
+    </a>
+
+    <!-- Links to JSON -->
+    <a
+      href="#section-json"
+      ng-show="vm.searchResult.total && vm.searchResult.total > 3"
+      class="clear-data btn btn-default" >
+      Jump to JSON data
     </a>
   </header>
 
   <hr>
 
-  <section>
+  <section id="section-1">
     <!-- Loading indicator
     * Displayed only when waiting for the data to be loaded. -->
     <p
@@ -91,8 +99,14 @@
         </div>
       </div>
     </div>
+    <a
+      href="#"
+      ng-show="vm.searchResult.total && vm.searchResult.total > 6">
+      Jump to top
+    </a>
+  </section>
 
-    <hr>
+  <section id="section-json">
 
     <!-- Display JSON data -->
     <div class="alert alert-warning">
@@ -102,6 +116,9 @@
             ng-click="searchTerm = '' ; vm.clearData()" >
             Clear data
           </a>
+          <span ng-show="vm.searchResult.total && vm.searchResult.total > 6">
+            | <a href="#">Jump to top</a>
+          </span>
         </small>
       </h4>
 
@@ -111,5 +128,13 @@
 
       <pre>{{ vm.searchResult | json }}</pre>
     </div>
+
+    <a
+      href="#"
+      ng-show="vm.searchResult.total && vm.searchResult.total > 6">
+      Jump to top
+    </a>
   </section>
 </div>
+
+<app-footer></app-footer>
